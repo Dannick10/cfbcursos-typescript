@@ -1,0 +1,10 @@
+"use strict";
+let vnome;
+vnome = "Daniel";
+console.log(vnome);
+let vnome2;
+vnome2 = null;
+console.log(vnome2);
+let vnome3 = vnome;
+let vnum = vnome3;
+console.log(vnome3);
