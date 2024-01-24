@@ -17,10 +17,18 @@ class Conta {
         return this.saldoConta;
     }
     depoisito(valor) {
+        if (valor < 0) {
+            console.log('valor invalido');
+            return;
+        }
         this.saldoConta += valor;
     }
     saque(valor) {
-        if (valor >= this.saldoConta) {
+        if (valor < 0) {
+            console.log('valor invalido');
+            return;
+        }
+        if (valor <= this.saldoConta) {
             this.saldoConta -= valor;
         }
         else {
@@ -39,11 +47,20 @@ class ContaPf extends Conta {
         console.log(`CPF: ${this.cpf}`);
     }
     depoisito(valor) {
+       
         if (valor > 1000) {
             console.log('calor de depositor muito grande');
         }
         else {
-            super.depoisito(valor);
+          super.depoisito(valor)
+        }
+    }
+    saque(valor) {
+        if (valor > 1000) {
+            console.log('valor de saque muito grande');
+        }
+        else {
+            super.saque(valor);
         }
     }
 }
@@ -58,6 +75,7 @@ class ContaPj extends Conta {
         console.log(`CNPJ: Saldo: ${this.saldoConta}`);
     }
     depoisito(valor) {
+     
         if (valor > 10000) {
             console.log('calor de depositor muito grande');
         }
@@ -65,10 +83,17 @@ class ContaPj extends Conta {
             super.depoisito(valor);
         }
     }
+    saque(valor) {
+        if (valor > 10000) {
+            console.log('valor de saque muito grande');
+        }
+        else {
+            super.saque(valor);
+        }
+    }
 }
 const cont1pf = new ContaPf(222333, 'Daniel');
-console.log(cont1pf.depoisito(100))
-
+cont1pf.depoisito(100);
+cont1pf.saque();
+console.log(cont1pf.saldo());
 cont1pf.info();
-const cont2pj = new ContaPj(15479546, 'Fabricio');
-cont2pj.info();

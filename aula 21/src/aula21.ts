@@ -4,7 +4,8 @@ class Conta{
     //protect acessado na classe pai e classe filho
    private numero:number
    protected titular:string
-   protected saldoConta:number
+   protected saldoConta:number 
+  
 
     constructor(titular:string){
         this.numero = Math.floor(Math.random()*100000000000)
@@ -26,11 +27,19 @@ class Conta{
     }
 
     protected depoisito(valor:number){
+        if(valor <0){
+            console.log('valor invalido')
+            return
+        }
         this.saldoConta += valor
     }
 
     protected saque(valor:number){
-        if(valor >= this.saldoConta){
+        if(valor <0){
+            console.log('valor invalido')
+            return
+        }
+        if(valor <= this.saldoConta){
         this.saldoConta -= valor
         } else {
              console.log('saldo insufiicente')
@@ -65,6 +74,14 @@ class ContaPf extends Conta {
         }
     }
 
+    saque(valor:number){
+        if(valor>1000){
+            console.log('valor de saque muito grande')
+        }else{
+            super.saque(valor)
+        }
+    }
+
 }
 
 class ContaPj extends Conta {
@@ -88,13 +105,19 @@ class ContaPj extends Conta {
             super.depoisito(valor)
         }
     }
+
+    saque(valor:number){
+        if(valor>10000){
+            console.log('valor de saque muito grande')
+        }else{
+            super.saque(valor)
+        }
+    }
+
 }
 
 const cont1pf = new ContaPf(222333,'Daniel')
 cont1pf.depoisito(100)
-cont1pf.saldo()
+cont1pf.saque(100)
+console.log(cont1pf.saldo())
 cont1pf.info()
-
-const cont2pj = new ContaPj(15479546,'Fabricio')
-
-cont2pj.info()
