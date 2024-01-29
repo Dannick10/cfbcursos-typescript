@@ -1,4 +1,4 @@
-export class Pessoa{
+ class Pessoa{
     nome:string 
     altura:number 
     constructor(nome:string,altura:number){
@@ -7,10 +7,17 @@ export class Pessoa{
     }
 }
 
-export class Objetos{
+ class Objetos{
     nome:string 
     constructor(nome:string){
         this.nome = nome 
     }
 }
+
+ const coisas:string[] =['corda','pilha','lampada']
+
+export default Pessoa
+
+ export {coisas,Objetos}
+
 
